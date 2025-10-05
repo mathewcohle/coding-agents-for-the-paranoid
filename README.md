@@ -2,6 +2,8 @@
 
 This project demonstrates how to build a Docker/Podman image with pre-configured Claude Code credentials, allowing you to run Claude Code in containers without needing to authenticate each time.
 
+Developed and tested on _Linux_, likely compatible with _macOS_, untested on _Windows_.
+
 For full details, see: https://matcohle.me/coding-agents-for-paranoid/
 
 ## How It Works
