@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+echo "🧹 Clean previous build..."
+rm -i ./credentials/.claude.json || true
+rm -ir ./credentials/.claude || true
+podman rmi -i claude-code claude-code-credentials
+
 echo "🔨 Building credentials container..."
 podman build -t claude-code-credentials -f Dockerfile.credentials .
 
