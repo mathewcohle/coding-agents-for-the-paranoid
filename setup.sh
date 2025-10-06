@@ -2,8 +2,16 @@
 set -e
 
 echo "🧹 Clean previous build..."
-rm -i ./credentials/.claude.json || true
-rm -ir ./credentials/.claude || true
+read -p "⚠️ Delete 'credentials/' and all contents? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  rm ./credentials/.claude.json || true
+  rm -r ./credentials/.claude || true
+else
+  echo "Setup process cancelled"
+  exit 1
+fi
+
 podman rmi -i claude-code claude-code-credentials
 
 echo "🔨 Building credentials container..."
