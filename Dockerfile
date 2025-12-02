@@ -1,9 +1,10 @@
-FROM ubuntu:24.04
-RUN apt update && apt install -y nodejs npm
+FROM node:24-alpine
+RUN apk add --no-cache bash
+ENV SHELL=/bin/bash
 RUN npm install -g @anthropic-ai/claude-code
 # Setup proper user
-RUN groupadd -f -g 1234 claude && \
-    useradd -u 1234 -g 1234 -ms /bin/bash claude
+RUN addgroup -g 1234 claude && \
+    adduser -u 1234 -G claude -s /bin/sh -D claude
 # Provide OAuth credentials
 COPY credentials/ /home/claude/
 # Required for credentials to be uptaken
